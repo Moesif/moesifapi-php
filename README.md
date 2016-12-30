@@ -1,20 +1,15 @@
 MoesifApi
 =================
 
+[Source Code on GitHub](https://github.com/moesif/moesifapi-nodejs)
+
+__Check out Moesif's
+[PHP developer documentation](https://www.moesif.com/developer-documentation/?php) to learn more__
+
 How To Configure:
 =================
-The generated code might need to be configured with your API credentials. To do that,
+The code might need to be configured with your API credentials. To do that,
 open the file "Configuration.php" and edit it's contents.
-
-How To Build:
-=============
-The generated code has dependencies over external libraries. These dependencies
-are defined in the `composer.json` file. To resolve these dependencies, we use
-the *Composer* package manager. You will need internet access for this.
-
-1. If you have not already installed Composer, [install the latest version](https://getcomposer.org/download/).
-2. Once Composer is installed, from commandline, run `composer install`
-    to install dependencies.
 
 How To Use:
 ===========
