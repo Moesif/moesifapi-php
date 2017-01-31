@@ -1,18 +1,17 @@
-MoesifApi
-=================
+# MoesifApi Lib for PHP
 
 [Source Code on GitHub](https://github.com/moesif/moesifapi-nodejs)
 
-__Check out Moesif's
-[PHP developer documentation](https://www.moesif.com/developer-documentation/?php) to learn more__
+__Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [PHP API Reference](https://www.moesif.com/docs/api?php) to learn more__
 
-How To Configure:
-=================
+
+## How To Configure:
+
 The code might need to be configured with your API credentials. To do that,
 open the file "Configuration.php" and edit it's contents.
 
-How To Use:
-===========
+## How To Use:
+
 For using this SDK do the following:
 
 1. Use Composer to install the dependencies. See the section "How To Build".
@@ -36,8 +35,8 @@ For using this SDK do the following:
     $controller = $client->getApi();
     ```
 
-How To Test:
-============
+## How To Test:
+
 Unit tests in this SDK can be run using PHPUnit.
 
 1. First install the dependencies using composer including the `require-dev` dependencies.
