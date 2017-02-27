@@ -35,12 +35,31 @@ For using this SDK do the following:
     $controller = $client->getApi();
     ```
 
+### updateUser
+
+Besides sending events, you can use update a user profile using this library.
+
+```PHP
+$user = new Models\UserModel();
+
+$user->userId = "moesifphpuser";
+$user->metadata = [
+  "email" => "moesifphp@email.com",
+  "name" => "moesif php",
+  "custom" => "randomdata"
+];
+
+$controller->updateUser($user);
+
+```
+
 ## How To Test:
 
 Unit tests in this SDK can be run using PHPUnit.
 
 1. First install the dependencies using composer including the `require-dev` dependencies.
-2. Run `vendor\bin\phpunit --verbose` from commandline to execute tests. If you have
+2. Add your applicationId to the `tests\Controllers\ApiControllerTest.php` file.
+3. Run `vendor\bin\phpunit --verbose` from commandline to execute tests. If you have
    installed PHPUnit globally, run tests using `phpunit --verbose` instead.
 
 You can change the PHPUnit test configuration in the `phpunit.xml` file.

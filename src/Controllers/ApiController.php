@@ -61,7 +61,8 @@ class ApiController extends BaseController {
         //prepare headers
         $_headers = array (
             'content-type'  => 'application/json; charset=utf-8',
-            'X-Moesif-Application-Id' => Configuration::$applicationId
+            'X-Moesif-Application-Id' => Configuration::$applicationId,
+            'User-Agent' => 'moesifapi-php ' . Configuration::$VERSION
         );
 
         //call on-before Http callback
@@ -108,7 +109,8 @@ class ApiController extends BaseController {
         //prepare headers
         $_headers = array (
             'content-type'  => 'application/json; charset=utf-8',
-            'X-Moesif-Application-Id' => Configuration::$applicationId
+            'X-Moesif-Application-Id' => Configuration::$applicationId,
+            'User-Agent' => 'moesifapi-php ' . Configuration::$VERSION
         );
 
         //call on-before Http callback
@@ -134,5 +136,99 @@ class ApiController extends BaseController {
         }
     }
 
+    /**
+     * Update a Single User Call
+     * @param  Models\UserModel $body     Required parameter: Example:
+     * @return void response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateUser ($body)
+    {
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/v1/users';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'content-type'  => 'application/json; charset=utf-8',
+            'X-Moesif-Application-Id' => Configuration::$applicationId,
+            'User-Agent' => 'moesifapi-php ' . Configuration::$VERSION
+        );
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($body));
+
+        //call on-after Http callback
+        if($this->getHttpCallBack() != null) {
+            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if (($response->code < 200) || ($response->code > 208)) { //[200,208] = HTTP OK
+            throw new APIException("HTTP Response Not OK", $_httpContext);
+        }
+    }
+
+    /**
+     * Update multiple users in a single batch (batch size must be less than 250kb)
+     * @param  array     $body     Required parameter: Example:
+     * @return void response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function updateUsersBatch (
+                $body)
+    {
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/v1/users/batch';
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'content-type'  => 'application/json; charset=utf-8',
+            'X-Moesif-Application-Id' => Configuration::$applicationId,
+            'User-Agent' => 'moesifapi-php ' . Configuration::$VERSION
+        );
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::post($_queryUrl, $_headers, Request\Body::Json($body));
+
+        //call on-after Http callback
+        if($this->getHttpCallBack() != null) {
+            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //Error handling using HTTP status codes
+        if (($response->code < 200) || ($response->code > 208)) { //[200,208] = HTTP OK
+            throw new APIException("HTTP Response Not OK", $_httpContext);
+        }
+    }
 
 }
