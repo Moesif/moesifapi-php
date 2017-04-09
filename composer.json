@@ -1,7 +1,7 @@
 {
-    "name": "moesif/moesifapi",
+    "name": "moesif/moesifapi-php",
     "type": "library",
-    "description": "Collection/Data Ingestion API",
+    "description": "Log HTTP API Requests/Responses to Moesif",
     "keywords": ["Moesif API","API","SDK"],
     "homepage": "https://moesif.com",
     "license": "Apache-2.0",
