@@ -26,7 +26,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase {
      */
     public static function setUpBeforeClass()
     {
-        $client = new MoesifApi\MoesifApiClient("eyJhcHAiOiI5NDo2IiwidmVyIjoiMi4wIiwib3JnIjoiODg6NSIsImlhdCI6MTUwNzU5MzYwMH0.fGZydPfBh-FjMN_Op8Uab7kphbqb0PsytYPtJLqzd20");
+        $client = new MoesifApi\MoesifApiClient("your application id");
         self::$controller = $client->getApi();
     }
 
