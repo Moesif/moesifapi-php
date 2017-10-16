@@ -5,10 +5,13 @@
 __Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [PHP API Reference](https://www.moesif.com/docs/api?php) to learn more__
 
 
-## How To Configure:
+## How To Install
 
-The code might need to be configured with your API credentials. To do that,
-open the file "Configuration.php" and edit it's contents.
+Install via Composer
+
+```shell
+composer require moesif/moesifapi
+```
 
 ## How To Use:
 
@@ -27,12 +30,12 @@ For using this SDK do the following:
     ```PHP
     use MoesifApi\MoesifApiClient;
     ```
-5. Instantiate the client. After this, you can now get the controllers and call the
+5. Instantiate the client. After this, you can now access the Moesif API and call the
     respective methods:
 
     ```PHP
     $client = new MoesifApiClient("Your application Id");
-    $controller = $client->getApi();
+    $api = $client->getApi();
     ```
 
 ### createEvent
@@ -46,14 +49,14 @@ for details on this API and the required fields.
 
 $event = APIHelper::deserialize('{ "request": { "time": "2016-09-09T04:45:42.914", "uri": "<https://api.acmeinc.com/items/reviews/>", "verb": "PATCH", "api_version": "1.1.0", "ip_address": "61.48.220.123", "headers": { "Host": "api.acmeinc.com", "Accept": "_/_", "Connection": "Keep-Alive", "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 5.0.2; C6906 Build/14.5.A.0.242)", "Content-Type": "application/json", "Content-Length": "126", "Accept-Encoding": "gzip" }, "body": { "items": [ { "direction_type": 1, "discovery_id": "fwfrf", "liked": false }, { "direction_type": 2, "discovery_id": "d43d3f", "liked": true } ] } }, "response": { "time": "2016-09-09T04:45:42.914", "status": 500, "headers": { "Date": "Tue, 23 Aug 2016 23:46:49 GMT", "Vary": "Accept-Encoding", "Pragma": "no-cache", "Expires": "-1", "Content-Type": "application/json; charset=utf-8", "X-Powered-By": "ARR/3.0", "Cache-Control": "no-cache", "Arr-Disable-Session-Affinity": "true" }, "body": { "Error": "InvalidArgumentException", "Message": "Missing field field_a" } }, "user_id": "mndug437f43", "session_token": "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98q3yhwmnhcfx43f", "metadata": { "foo": "bar" } }', new Models\EventModel());
 
-// events are can be only backdate up to 7 days in the past.
+// Note: If the request.time is in the past, it can only be backdated up to 7 days.
 
 $reqdate = new DateTime();
 $event->request->time = $reqdate->format(DateTime::ISO8601);
 $rspdate = new DateTime();
 $event->response->time = $rspdate->format(DateTime::ISO8601);
 
-$controller->createEvent($event);
+$api->createEvent($event);
 
 ```
 
@@ -71,7 +74,7 @@ $user->metadata = [
   "custom" => "randomdata"
 ];
 
-$controller->updateUser($user);
+$api->updateUser($user);
 
 ```
 
