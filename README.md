@@ -31,9 +31,26 @@ For using this SDK do the following:
     respective methods:
 
     ```PHP
-    $client = new MoesifApiClient();
+    $client = new MoesifApiClient("Your application Id");
     $controller = $client->getApi();
     ```
+
+### createEvent
+
+```PHP
+
+$event = APIHelper::deserialize('{ 					"request": { 						"time": "2016-09-09T04:45:42.914", 						"uri": "https://api.acmeinc.com/items/reviews/", 						"verb": "PATCH", 						"api_version": "1.1.0", 						"ip_address": "61.48.220.123", 						"headers": { 							"Host": "api.acmeinc.com", 							"Accept": "*/*", 							"Connection": "Keep-Alive", 							"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 5.0.2; C6906 Build/14.5.A.0.242)", 							"Content-Type": "application/json", 							"Content-Length": "126", 							"Accept-Encoding": "gzip" 						}, 						"body": { 							"items": [ 								{ 									"direction_type": 1, 									"discovery_id": "fwfrf", 									"liked": false 								}, 								{ 									"direction_type": 2, 									"discovery_id": "d43d3f", 									"liked": true 								} 							] 						} 					}, 					"response": { 						"time": "2016-09-09T04:45:42.914", 						"status": 500, 						"headers": { 							"Date": "Tue, 23 Aug 2016 23:46:49 GMT", 							"Vary": "Accept-Encoding", 							"Pragma": "no-cache", 							"Expires": "-1", 							"Content-Type": "application/json; charset=utf-8", 							"X-Powered-By": "ARR/3.0", 							"Cache-Control": "no-cache", 							"Arr-Disable-Session-Affinity": "true" 						}, 						"body": { 							"Error": "InvalidArgumentException", 							"Message": "Missing field field_a" 						} 					}, 					"user_id": "mndug437f43", 					"session_token": "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ng]s98y18cx98q3yhwmnhcfx43f", "metadata": { "foo": "bar" } 					 }', new Models\EventModel());
+
+// events are can be only backdate up to 7 days in the past.
+
+$reqdate = new DateTime();
+$event->request->time = $reqdate->format(DateTime::ISO8601);
+$rspdate = new DateTime();
+$event->response->time = $rspdate->format(DateTime::ISO8601);
+
+$controller->createEvent($event);
+
+```
 
 ### updateUser
 
