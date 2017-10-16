@@ -60,6 +60,45 @@ $api->createEvent($event);
 
 ```
 
+Create Events in batch:
+
+```PHP
+
+  // constructing an example EventModel directly.
+  $event1 = new Models\EventModel();
+  $reqdate1 = new DateTime();
+  $event1->request = new Models\EventRequestModel();
+  $event1->request->time = $reqdate1->format(DateTime::ISO8601);
+  $event1->request->uri = 'https://testbatch.com/batch/1';
+  $event1->request->verb = 'GET';
+  $event1->request->headers = array("reqheader1"=>"value1");
+  $event1->response = new Models\EventResponseModel();
+  $rspdate1 = (new DateTime())->add(new DateInterval('PT1S'));
+  $event1->response->time = $rspdate1->format(DateTime::ISO8601);
+  $event1->response->headers = array("header1"=>"value1");
+  $event1->response->status = 200;
+  $event1->response->body = array("bodyfield1"=>"bodyvalue1");
+
+  $event2 = new Models\EventModel();
+  $reqdate2 = new DateTime();
+  $event2->request = new Models\EventRequestModel();
+  $event2->request->time = $reqdate2->format(DateTime::ISO8601);
+  $event2->request->headers = array("reqheader2"=>"value2");
+  $event2->request->uri = 'https://testbatch.com/batch/2';
+  $event2->request->verb = 'GET';
+  $event2->response = new Models\EventResponseModel();
+  $rspdate2 = (new DateTime())->add(new DateInterval('PT2S'));
+  $event2->response->time = $rspdate2->format(DateTime::ISO8601);
+  $event2->response->headers = array("header2"=>"value1");
+  $event2->response->status = 200;
+  $event2->response->body = array("bodyfield2"=>"bodyvalue1");
+
+
+  // creating a batch of events.
+  $api->createEventsBatch(array($event1, $event2));
+
+```
+
 ### updateUser
 
 Besides sending events, you can use update a user profile using this library.
