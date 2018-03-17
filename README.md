@@ -10,7 +10,7 @@ __Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and 
 Install via Composer
 
 ```shell
-composer require moesif/moesifapi
+composer require moesif/moesifapi-php
 ```
 
 ## How To Use:
