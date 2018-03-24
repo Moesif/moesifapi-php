@@ -34,7 +34,7 @@ For using this SDK do the following:
     respective methods:
 
     ```PHP
-    $client = new MoesifAPIClient("Your application Id");
+    $client = new MoesifApiClient("Your application Id");
     $api = $client->getApi();
     ```
 
