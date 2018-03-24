@@ -28,7 +28,7 @@ For using this SDK do the following:
 4. Import the SDK client in your project:
 
     ```PHP
-    use MoesifApi\MoesifAPIClient;
+    use MoesifApi\MoesifApiClient;
     ```
 5. Instantiate the client. After this, you can now access the Moesif API and call the
     respective methods:
