@@ -1,5 +1,10 @@
 # MoesifApi Lib for PHP
 
+[![Built For][ico-built-for]][link-built-for]
+[![Latest Version][ico-version]][link-package]
+[![Software License][ico-license]][link-license]
+[![Source Code][ico-source]][link-source]
+
 [Source Code on GitHub](https://github.com/moesif/moesifapi-nodejs)
 
 __Check out Moesif's [Developer Documentation](https://www.moesif.com/docs) and [PHP API Reference](https://www.moesif.com/docs/api?php) to learn more__
@@ -129,3 +134,13 @@ Unit tests in this SDK can be run using PHPUnit.
    installed PHPUnit globally, run tests using `phpunit --verbose` instead.
 
 You can change the PHPUnit test configuration in the `phpunit.xml` file.
+
+[ico-built-for]: https://img.shields.io/badge/built%20for-php-blue.svg
+[ico-version]: https://img.shields.io/packagist/v/moesif/moesifapi-php.svg
+[ico-license]: https://img.shields.io/badge/License-Apache%202.0-green.svg
+[ico-source]: https://img.shields.io/github/last-commit/moesif/moesifapi-php.svg?style=social
+
+[link-built-for]: http://laravel.com
+[link-package]: https://packagist.org/packages/moesif/moesifapi-php
+[link-license]: https://raw.githubusercontent.com/Moesif/moesifapi-php/master/LICENSE
+[link-source]: https://github.com/moesif/moesifapi-php
