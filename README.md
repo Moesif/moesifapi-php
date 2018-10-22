@@ -140,7 +140,7 @@ You can change the PHPUnit test configuration in the `phpunit.xml` file.
 [ico-license]: https://img.shields.io/badge/License-Apache%202.0-green.svg
 [ico-source]: https://img.shields.io/github/last-commit/moesif/moesifapi-php.svg?style=social
 
-[link-built-for]: http://laravel.com
+[link-built-for]: http://www.php.net/
 [link-package]: https://packagist.org/packages/moesif/moesifapi-php
 [link-license]: https://raw.githubusercontent.com/Moesif/moesifapi-php/master/LICENSE
 [link-source]: https://github.com/moesif/moesifapi-php
