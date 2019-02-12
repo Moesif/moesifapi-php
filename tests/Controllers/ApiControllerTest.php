@@ -205,4 +205,24 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
             "Status is not 201"
         );
     }
+
+    /**
+     * Get Application config via Injestion API
+     */
+    public function testGetAppConfig()
+    {
+        // Set callback and perform API call
+        self::$controller->setHttpCallBack($this->httpResponse);
+        try {
+            self::$controller->getAppConfig();
+        } catch (APIException $e) {
+        };
+
+        // Test response code
+        $this->assertEquals(
+            200,
+            $this->httpResponse->getResponse()->getStatusCode(),
+            "Status is not 200"
+        );
+    }
 }

@@ -89,7 +89,7 @@ class UserModel implements JsonSerializable {
         $json['moesified_time']  = $this->modifiedTime;
         $json['ip_address']        = $this->ipAddress;
         $json['user_agent_string']     = $this->userAgentString;
-        $json['session_token'] = $this->session_token;
+        $json['session_token'] = $this->sessionToken;
         $json['metadata']  = $this->metadata;
 
         return $json;
