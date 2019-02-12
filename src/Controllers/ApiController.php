@@ -86,6 +86,9 @@ class ApiController extends BaseController {
         if (($response->code < 200) || ($response->code > 208)) { //[200,208] = HTTP OK
             throw new APIException("HTTP Response Not OK", $_httpContext);
         }
+
+        # Return response headers
+        return $response->headers;
     }
 
     /**
@@ -134,6 +137,9 @@ class ApiController extends BaseController {
         if (($response->code < 200) || ($response->code > 208)) { //[200,208] = HTTP OK
             throw new APIException("HTTP Response Not OK", $_httpContext);
         }
+
+        # Return response headers
+        return $response;
     }
 
     /**
@@ -231,4 +237,53 @@ class ApiController extends BaseController {
         }
     }
 
+    /**
+     * Get App config
+     * @param  void Required parameter: Example:
+     * @return response response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+
+     public function getAppConfig()
+     {
+       //the base uri for api requests
+       $_queryBuilder = Configuration::$BASEURI;
+
+       //prepare query string for API call
+       $_queryBuilder = $_queryBuilder.'/v1/config';
+
+       //validate and preprocess url
+       $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+       //prepare headers
+       $_headers = array (
+           'content-type'  => 'application/json; charset=utf-8',
+           'X-Moesif-Application-Id' => Configuration::$applicationId
+       );
+
+       //call on-before Http callback
+       $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+       if($this->getHttpCallBack() != null) {
+           $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+       }
+
+       //and invoke the API call request to fetch the response
+       $response = Request::get($_queryUrl, $_headers);
+
+       //call on-after Http callback
+       if($this->getHttpCallBack() != null) {
+           $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+           $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+           $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+       }
+
+       //Error handling using HTTP status codes
+       if (($response->code < 200) || ($response->code > 208)) { //[200,208] = HTTP OK
+           throw new APIException("HTTP Response Not OK", $_httpContext);
+       }
+
+       // return response
+       return $response;
+     }
 }
