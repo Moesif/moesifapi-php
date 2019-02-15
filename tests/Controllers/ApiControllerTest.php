@@ -225,4 +225,77 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
             "Status is not 200"
         );
     }
+
+    /**
+     * Add Single Company via Injestion API
+     */
+    public function testAddCompany()
+    {
+        // Parameters for the API call
+        $company = new Models\CompanyModel();
+
+        $company->companyId = "1";
+        $company->metadata = [
+          "email" => "moesifphp2@email.com",
+          "name" => "moesif php2",
+          "custom" => "randomdata2"
+        ];
+
+        // Set callback and perform API call
+        self::$controller->setHttpCallBack($this->httpResponse);
+        try {
+            self::$controller->addCompany($company);
+        } catch (APIException $e) {
+        };
+
+        // Test response code
+        $this->assertEquals(
+            201,
+            $this->httpResponse->getResponse()->getStatusCode(),
+            "Status is not 201"
+        );
+    }
+
+    /**
+     * Add Multiple Companies via Injestion API
+     */
+    public function testAddCompaniesBatch()
+    {
+        // Parameters for the API call
+        $companyA = new Models\CompanyModel();
+        $companyB = new Models\CompanyModel();
+
+        $companyA->companyId = "1";
+        $companyA->metadata = [
+          "email" => "moesifphp2@email.com",
+          "name" => "moesif php2",
+          "custom" => "randomdata2"
+        ];
+
+        $companyB->companyId = "2";
+        $companyB->sessionToken = "sdfnkewntib3wn5489hkdsnvkjb329o4rhik";
+        $companyB->metadata = [
+          "email" => "moesifphp2@email.com",
+          "name" => "moesif php2",
+          "custom" => "randomdata2"
+        ];
+
+        $companies = array();
+        array_push($companies, $companyA);
+        array_push($companies, $companyB);
+
+        // Set callback and perform API call
+        self::$controller->setHttpCallBack($this->httpResponse);
+        try {
+            self::$controller->addCompaniesBatch($companies);
+        } catch (APIException $e) {
+        };
+
+        // Test response code
+        $this->assertEquals(
+            201,
+            $this->httpResponse->getResponse()->getStatusCode(),
+            "Status is not 201"
+        );
+    }
 }
