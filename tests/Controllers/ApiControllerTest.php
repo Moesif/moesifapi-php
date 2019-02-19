@@ -227,9 +227,9 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Add Single Company via Injestion API
+     * Update Single Company via Injestion API
      */
-    public function testAddCompany()
+    public function testUpdateCompany()
     {
         // Parameters for the API call
         $company = new Models\CompanyModel();
@@ -244,7 +244,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
         // Set callback and perform API call
         self::$controller->setHttpCallBack($this->httpResponse);
         try {
-            self::$controller->addCompany($company);
+            self::$controller->updateCompany($company);
         } catch (APIException $e) {
         };
 
@@ -257,9 +257,9 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Add Multiple Companies via Injestion API
+     * Update Multiple Companies via Injestion API
      */
-    public function testAddCompaniesBatch()
+    public function testUpdateCompaniesBatch()
     {
         // Parameters for the API call
         $companyA = new Models\CompanyModel();
@@ -287,7 +287,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
         // Set callback and perform API call
         self::$controller->setHttpCallBack($this->httpResponse);
         try {
-            self::$controller->addCompaniesBatch($companies);
+            self::$controller->updateCompaniesBatch($companies);
         } catch (APIException $e) {
         };
 

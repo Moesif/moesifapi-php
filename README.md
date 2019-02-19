@@ -124,9 +124,9 @@ $api->updateUser($user);
 
 ```
 
-### addCompany
+### updateCompany
 
-Besides sending events and updating user profile, you can also add company information using this library.
+Besides sending events and updating user profile, you can also update company information using this library.
 
 ```PHP
 $company = new Models\CompanyModel();
@@ -138,7 +138,7 @@ $company->metadata = [
   "custom" => "randomdata2"
 ];
 
-$api->addCompany($company);
+$api->updateCompany($company);
 
 ```
 
