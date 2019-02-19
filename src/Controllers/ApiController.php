@@ -288,12 +288,12 @@ class ApiController extends BaseController {
      }
 
      /**
-     * Add a Single Company Call
+     * Update a Single Company Call
      * @param  Models\CompanyModel $body     Required parameter: Example:
      * @return void response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function addCompany ($body)
+    public function updateCompany ($body)
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
@@ -335,12 +335,12 @@ class ApiController extends BaseController {
     }
 
     /**
-     * Add multiple companies in a single batch (batch size must be less than 250kb)
+     * Update multiple companies in a single batch (batch size must be less than 250kb)
      * @param  array     $body     Required parameter: Example:
      * @return void response from the API call
      * @throws APIException Thrown if API call fails
      */
-    public function addCompaniesBatch ($body)
+    public function updateCompaniesBatch ($body)
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;

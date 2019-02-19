@@ -124,6 +124,24 @@ $api->updateUser($user);
 
 ```
 
+### updateCompany
+
+Besides sending events and updating user profile, you can also update company information using this library.
+
+```PHP
+$company = new Models\CompanyModel();
+
+$company->companyId = "1";
+$company->metadata = [
+  "email" => "moesifphp2@email.com",
+  "name" => "moesif php2",
+  "custom" => "randomdata2"
+];
+
+$api->updateCompany($company);
+
+```
+
 ## How To Test:
 
 Unit tests in this SDK can be run using PHPUnit.

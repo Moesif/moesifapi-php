@@ -46,6 +46,13 @@ class EventModel implements JsonSerializable {
     public $userId;
 
     /**
+     * company_id string
+     * @maps company_id
+     * @var string $companyId public property
+     */
+    public $companyId;
+
+    /**
      * metadata for an event
      * @optional
      * @var object $metadata public property
@@ -59,17 +66,19 @@ class EventModel implements JsonSerializable {
      * @param   string            $sessionToken    Initialization value for the property $this->sessionToken
      * @param   string            $tags            Initialization value for the property $this->tags
      * @param   string            $userId          Initialization value for the property $this->userId
+     * @param   string            $companyId       Initialization value for the property $this->companyId
      */
     public function __construct()
     {
-        if(6 == func_num_args())
+        if(7 == func_num_args())
         {
             $this->request       = func_get_arg(0);
             $this->response      = func_get_arg(1);
             $this->sessionToken  = func_get_arg(2);
             $this->tags          = func_get_arg(3);
             $this->userId        = func_get_arg(4);
-            $this->metadata      = func_get_arg(5);
+            $this->companyId     = func_get_arg(5);
+            $this->metadata      = func_get_arg(6);
         }
     }
 
@@ -85,6 +94,7 @@ class EventModel implements JsonSerializable {
         $json['session_token'] = $this->sessionToken;
         $json['tags']          = $this->tags;
         $json['user_id']       = $this->userId;
+        $json['company_id']    = $this->companyId;
         $json['metadata']      = $this->metadata;
 
         return $json;
