@@ -86,7 +86,7 @@ class CompanyModel implements JsonSerializable {
     {
         $json = array();
         $json['company_id']      = $this->companyId;
-        $json['moesified_time']  = $this->modifiedTime;
+        $json['modified_time']  = $this->modifiedTime;
         $json['ip_address']      = $this->ipAddress;
         $json['company_domain']  = $this->companyDomain;
         $json['session_token']   = $this->sessionToken;
