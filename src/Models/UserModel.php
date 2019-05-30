@@ -86,7 +86,7 @@ class UserModel implements JsonSerializable {
     {
         $json = array();
         $json['user_id']     = $this->userId;
-        $json['moesified_time']  = $this->modifiedTime;
+        $json['modified_time']  = $this->modifiedTime;
         $json['ip_address']        = $this->ipAddress;
         $json['user_agent_string']     = $this->userAgentString;
         $json['session_token'] = $this->sessionToken;

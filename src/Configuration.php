@@ -16,7 +16,7 @@ class Configuration {
      * @var string
      */
     public static $BASEURI = 'https://api.moesif.net';
-    public static $VERSION = 'v1.1.4';
+    public static $VERSION = 'v1.1.5';
 
     /**
      * Your Application Id for authentication/authorization
