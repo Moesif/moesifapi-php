@@ -80,14 +80,12 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
                     "X-Powered-By" => "ARR/3.0", 
                     "Cache-Control" => "no-cache", 
                     "Arr-Disable-Session-Affinity" => "true"), 
-                    "body" => array(
+                "body" => array(
                     "item_id" => "13221", 
                     "title" => "Red Brown Chair",
                     "description" => "Red brown chair for sale",
                     "price" => 22.23
-                    ), 
-                    "user_id" => "mndug437f43", 
-                    "session_token" => "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f"
+                    )
                 );
         $event->metadata = array(
                 "foo" => "bar" 
@@ -153,14 +151,12 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
                     "X-Powered-By" => "ARR/3.0", 
                     "Cache-Control" => "no-cache", 
                     "Arr-Disable-Session-Affinity" => "true"), 
-                    "body" => array(
+                "body" => array(
                     "item_id" => "13221", 
                     "title" => "Red Brown Chair",
                     "description" => "Red brown chair for sale",
                     "price" => 22.23
-                    ), 
-                    "user_id" => "mndug437f43", 
-                    "session_token" => "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f"
+                    )
                 );
         $event->metadata = array(
                 "foo" => "bar" 
