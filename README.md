@@ -60,7 +60,7 @@ use MoesifApi\MoesifApiClient;
 $client = new MoesifApiClient("Your Moesif Application Id");
 $api = $client->getApi();
 
-$event = new Models\EventModel()
+$event = new Models\EventModel();
 $reqdate = new DateTime();
 $rspdate = new DateTime();
 
@@ -74,7 +74,7 @@ $event->request = array(
          "Host" => "api.acmeinc.com", 
          "Accept" => "_/_", 
          "Connection" => "Keep-Alive", 
-         "User-Agent" => "nodejs-sdk/1.2.1", 
+         "User-Agent" => "moesifapi-php/1.1.5",
          "Content-Type" => "application/json", 
          "Content-Length" => "126", 
          "Accept-Encoding" => "gzip"), 
@@ -88,7 +88,7 @@ $event->request = array(
            "time" => $rspdate->format(DateTime::ISO8601), 
            "status" => 500, 
            "headers" => array(
-             "Date" => "Tue, 23 Aug 2019 23:46:49 GMT", 
+             "Date" => "Tue, 12 June 2019 23:46:49 GMT", 
              "Vary" => "Accept-Encoding", 
              "Pragma" => "no-cache", 
              "Expires" => "-1", 
@@ -135,7 +135,7 @@ $event->request = array(
          "Host" => "api.acmeinc.com", 
          "Accept" => "_/_", 
          "Connection" => "Keep-Alive", 
-         "User-Agent" => "nodejs-sdk/1.2.1", 
+         "User-Agent" => "moesifapi-php/1.1.5",
          "Content-Type" => "application/json", 
          "Content-Length" => "126", 
          "Accept-Encoding" => "gzip"), 
@@ -149,7 +149,7 @@ $event->request = array(
            "time" => $rspdate->format(DateTime::ISO8601), 
            "status" => 500, 
            "headers" => array(
-             "Date" => "Tue, 23 Aug 2019 23:46:49 GMT", 
+             "Date" => "Tue, 12 June 2019 23:46:49 GMT", 
              "Vary" => "Accept-Encoding", 
              "Pragma" => "no-cache", 
              "Expires" => "-1", 
@@ -229,7 +229,7 @@ Unit tests in this SDK can be run using PHPUnit.
 
 1. First install the dependencies using composer including the `require-dev` dependencies.
 2. Add your applicationId to the `tests\Controllers\ApiControllerTest.php` file.
-3. Run `vendor\bin\phpunit --verbose` from commandline to execute tests. If you have
+3. Run `vendor/bin/phpunit --verbose` from commandline to execute tests. If you have
    installed PHPUnit globally, run tests using `phpunit --verbose` instead.
 
 You can change the PHPUnit test configuration in the `phpunit.xml` file.
