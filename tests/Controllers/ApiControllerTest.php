@@ -91,8 +91,8 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
                 "foo" => "bar" 
                 );
 
-        $event->user_id = "12345";
-        $event->company_id = "5678";
+        $event->user_id = "my_user_id";
+        $event->company_id = "my_company_id";
         $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
         // Set callback and perform API call
@@ -162,8 +162,8 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
                 "foo" => "bar" 
                 );
 
-        $event->user_id = "12345";
-        $event->company_id = "5678";
+        $event->user_id = "my_user_id";
+        $event->company_id = "my_company_id";
         $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
         // Set callback and perform API call
@@ -264,7 +264,8 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
     {
         $user = new Models\UserModel();
 
-        $user->userId = "moesifphpuser2";
+        $user->userId = "12345";
+        $user->companyId = "67890";
         $user->metadata = [
           "email" => "moesifphp2@email.com",
           "name" => "moesif php2",
@@ -275,6 +276,50 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
         self::$controller->setHttpCallBack($this->httpResponse);
         try {
             self::$controller->updateUser($user);
+        } catch (APIException $e) {
+        };
+
+        // Test response code
+        $this->assertEquals(
+            201,
+            $this->httpResponse->getResponse()->getStatusCode(),
+            "Status is not 201"
+        );
+    }
+
+    /**
+     * Update Multiple Users via Injestion API
+     */
+    public function testUpdateUsersBatch()
+    {
+        // Parameters for the API call
+        $userA = new Models\UserModel();
+        $userB = new Models\UserModel();
+
+        $userA->userId = "12345";
+        $userA->companyId = "67890";
+        $userA->metadata = [
+          "email" => "moesifphp2@email.com",
+          "name" => "moesif php2",
+          "custom" => "randomdata2"
+        ];
+
+        $userB->userId = "1234";
+        $userB->companyId = "6789";
+        $userB->metadata = [
+          "email" => "moesifphp2@email.com",
+          "name" => "moesif php2",
+          "custom" => "randomdata2"
+        ];
+
+        $users = array();
+        array_push($users, $userA);
+        array_push($users, $userB);
+
+        // Set callback and perform API call
+        self::$controller->setHttpCallBack($this->httpResponse);
+        try {
+            self::$controller->updateUsersBatch($users);
         } catch (APIException $e) {
         };
 
@@ -314,7 +359,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
         // Parameters for the API call
         $company = new Models\CompanyModel();
 
-        $company->companyId = "1";
+        $company->companyId = "12345";
         $company->metadata = [
           "email" => "moesifphp2@email.com",
           "name" => "moesif php2",
@@ -345,14 +390,14 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
         $companyA = new Models\CompanyModel();
         $companyB = new Models\CompanyModel();
 
-        $companyA->companyId = "1";
+        $companyA->companyId = "12345";
         $companyA->metadata = [
           "email" => "moesifphp2@email.com",
           "name" => "moesif php2",
           "custom" => "randomdata2"
         ];
 
-        $companyB->companyId = "2";
+        $companyB->companyId = "67890";
         $companyB->sessionToken = "sdfnkewntib3wn5489hkdsnvkjb329o4rhik";
         $companyB->metadata = [
           "email" => "moesifphp2@email.com",

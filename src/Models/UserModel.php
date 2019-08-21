@@ -21,6 +21,13 @@ class UserModel implements JsonSerializable {
     public $userId;
 
     /**
+     * CompanyId associated with the user if available.
+     * @optional
+     * @var string $companyId public property
+     */
+    public $companyId;
+
+    /**
      * Time when the modification is made. Optional. Default to now.
      * @optional
      * @var string $modifiedTime public property
@@ -59,7 +66,8 @@ class UserModel implements JsonSerializable {
     /**
      * Constructor to set initial or default values of member properties
      * @param   string     $userId            Initialization value for the property $this->userId
-     * @param   string     $moeifiedTime      Initialization value for the property $this->modifiedTime
+     * @param   string     $companyId         Initialization value for the property $this->companyId
+     * @param   string     $modifiedTime      Initialization value for the property $this->modifiedTime
      * @param   string     $ipAddress         Initialization value for the property $this->ipAddress
      * @param   string     $userAgentString   Initialization value for the property $this->userAgentString
      * @param   string     $sessionToken      Initialization value for the property $this->sessionToken
@@ -70,11 +78,12 @@ class UserModel implements JsonSerializable {
         if(6 == func_num_args())
         {
             $this->userId       = func_get_arg(0);
-            $this->modifiedTime = func_get_arg(1);
-            $this->ipAddress    = func_get_arg(2);
-            $this->userAgentString = func_get_arg(3);
-            $this->sessionToken = func_get_arg(4);
-            $this->metadata     = func_get_arg(5);
+            $this->companyId    = func_get_arg(1);
+            $this->modifiedTime = func_get_arg(2);
+            $this->ipAddress    = func_get_arg(3);
+            $this->userAgentString = func_get_arg(4);
+            $this->sessionToken = func_get_arg(5);
+            $this->metadata     = func_get_arg(6);
         }
     }
 
@@ -86,6 +95,7 @@ class UserModel implements JsonSerializable {
     {
         $json = array();
         $json['user_id']     = $this->userId;
+        $json['company_id']     = $this->companyId;
         $json['modified_time']  = $this->modifiedTime;
         $json['ip_address']        = $this->ipAddress;
         $json['user_agent_string']     = $this->userAgentString;
