@@ -107,8 +107,8 @@ $event->metadata = array(
           "foo" => "bar" 
         );
 
-$event->user_id = "12345";
-$event->company_id = "5678";
+$event->user_id = "my_user_id";
+$event->company_id = "my_company_id";
 $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
 $api->createEvent($event);
@@ -166,8 +166,8 @@ $event->metadata = array(
           "foo" => "bar" 
         );
 
-$event->user_id = "12345";
-$event->company_id = "5678";
+$event->user_id = "my_user_id";
+$event->company_id = "my_company_id";
 $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
 // creating a batch of events.
@@ -186,7 +186,8 @@ $api = $client->getApi();
 
 $user = new Models\UserModel();
 
-$user->userId = "1234";
+$user->userId = "12345";
+$user->companyId = "67890";
 $user->metadata = [
   "email" => "johndoe@acmeinc.com",
   "name" => "John Doe",
@@ -208,7 +209,7 @@ $api = $client->getApi();
 
 $company = new Models\CompanyModel();
 
-$company->companyId = "5678";
+$company->companyId = "12345";
 $company->metadata = [
   "company_name" => "Acme, Inc"
   "company_domain" => "www.acmeinc.com"
