@@ -43,8 +43,14 @@ For using this SDK do the following:
     $api = $client->getApi();
     ```
 
-### createEvent
+Your Moesif Application Id can be found in the [_Moesif Portal_](https://www.moesif.com/).
+After signing up for a Moesif account, your Moesif Application Id will be displayed during the onboarding steps. 
 
+You can always find your Moesif Application Id at any time by logging 
+into the [_Moesif Portal_](https://www.moesif.com/), click on the top right menu,
+ and then clicking _Installation_.
+
+### Create Event
 
 Since this library is primarily a PHP wrapper for an API client, please
 [see API docs](https://www.moesif.com/docs/api?int_source=docs#how-to-install)
@@ -107,8 +113,8 @@ $event->metadata = array(
           "foo" => "bar" 
         );
 
-$event->user_id = "my_user_id";
-$event->company_id = "my_company_id";
+$event->user_id = "12345";
+$event->company_id = "67890";
 $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
 $api->createEvent($event);
@@ -166,8 +172,8 @@ $event->metadata = array(
           "foo" => "bar" 
         );
 
-$event->user_id = "my_user_id";
-$event->company_id = "my_company_id";
+$event->user_id = "12345";
+$event->company_id = "67890";
 $event->session_token = "23jdf0owekfmcn4u3qypxg09w4d8ayrcdx8nu2ngs98y18cx98q3yhwmnhcfx43f";
 
 // creating a batch of events.
@@ -175,7 +181,7 @@ $api->createEventsBatch(array($event, $event));
 
 ```
 
-### updateUser
+### Update User
 
 Besides sending events, you can use update a user profile using this library.
 
@@ -198,7 +204,7 @@ $user->metadata = [
 $api->updateUser($user);
 ```
 
-### updateCompany
+### Update Company
 
 Besides saving user profile, you can also create company or account profiles using this library.
 
