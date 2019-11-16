@@ -262,6 +262,12 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateUser()
     {
+
+        $campaign = new Models\CampaignModel();
+
+        $campaign->utmSource = "NewsletterPhp";
+        $campaign->utmMedium = "EmailPhp";
+
         $user = new Models\UserModel();
 
         $user->userId = "12345";
@@ -271,6 +277,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
           "name" => "moesif php2",
           "custom" => "randomdata2"
         ];
+        $user->campaign = $campaign;
 
         // Set callback and perform API call
         self::$controller->setHttpCallBack($this->httpResponse);
@@ -356,6 +363,12 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdateCompany()
     {
+
+        $campaign = new Models\CampaignModel();
+
+        $campaign->utmSource = "NewsletterPhp";
+        $campaign->utmMedium = "EmailPhp";
+
         // Parameters for the API call
         $company = new Models\CompanyModel();
 
@@ -365,6 +378,7 @@ class ApiControllerTest extends PHPUnit_Framework_TestCase
           "name" => "moesif php2",
           "custom" => "randomdata2"
         ];
+        $company->campaign = $campaign;
 
         // Set callback and perform API call
         self::$controller->setHttpCallBack($this->httpResponse);
