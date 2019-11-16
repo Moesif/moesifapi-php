@@ -190,6 +190,11 @@ use MoesifApi\MoesifApiClient;
 $client = new MoesifApiClient("Your Moesif Application Id");
 $api = $client->getApi();
 
+$campaign = new Models\CampaignModel();
+
+$campaign->utmSource = "NewsletterPhp";
+$campaign->utmMedium = "EmailPhp";
+
 $user = new Models\UserModel();
 
 $user->userId = "12345";
@@ -200,6 +205,7 @@ $user->metadata = [
   "first_name" => "John"
   "phone" => "1234567890"
 ];
+$user->campaign = $campaign;
 
 $api->updateUser($user);
 ```
@@ -213,6 +219,11 @@ use MoesifApi\MoesifApiClient;
 $client = new MoesifApiClient("Your Moesif Application Id");
 $api = $client->getApi();
 
+$campaign = new Models\CampaignModel();
+
+$campaign->utmSource = "NewsletterPhp";
+$campaign->utmMedium = "EmailPhp";
+
 $company = new Models\CompanyModel();
 
 $company->companyId = "12345";
@@ -222,6 +233,7 @@ $company->metadata = [
   "akexa_ranking" => 500000,
   "plan_mrr" => 1000
 ];
+$company->campaign = $campaign;
 
 $api->updateCompany($company);
 ```
@@ -230,7 +242,7 @@ $api->updateCompany($company);
 
 Unit tests in this SDK can be run using PHPUnit.
 
-1. First install the dependencies using composer including the `require-dev` dependencies.
+1. First install the dependencies using `composer install` including the `require-dev` dependencies.
 2. Add your applicationId to the `tests\Controllers\ApiControllerTest.php` file.
 3. Run `vendor/bin/phpunit --verbose` from commandline to execute tests. If you have
    installed PHPUnit globally, run tests using `phpunit --verbose` instead.
