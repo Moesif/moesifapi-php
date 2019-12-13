@@ -60,6 +60,13 @@ class EventModel implements JsonSerializable {
     public $metadata;
 
     /**
+     * direction string
+     * @maps direction
+     * @var string $direction public property
+     */
+    public $direction;
+
+    /**
      * Constructor to set initial or default values of member properties
      * @param   EventRequestModel   $request         Initialization value for the property $this->request
      * @param   EventResponseModel   $response        Initialization value for the property $this->response
@@ -67,10 +74,12 @@ class EventModel implements JsonSerializable {
      * @param   string            $tags            Initialization value for the property $this->tags
      * @param   string            $userId          Initialization value for the property $this->userId
      * @param   string            $companyId       Initialization value for the property $this->companyId
+     * @param   object            $metadata        Initialization value for the property $this->metadata
+     * @param   string            $direction       Initialization value for the property $this->direction
      */
     public function __construct()
     {
-        if(7 == func_num_args())
+        if(8 == func_num_args())
         {
             $this->request       = func_get_arg(0);
             $this->response      = func_get_arg(1);
@@ -79,6 +88,7 @@ class EventModel implements JsonSerializable {
             $this->userId        = func_get_arg(4);
             $this->companyId     = func_get_arg(5);
             $this->metadata      = func_get_arg(6);
+            $this->direction     = func_get_arg(7);
         }
     }
 
@@ -96,6 +106,7 @@ class EventModel implements JsonSerializable {
         $json['user_id']       = $this->userId;
         $json['company_id']    = $this->companyId;
         $json['metadata']      = $this->metadata;
+        $json['direction']     = $this->direction;
 
         return $json;
     }
