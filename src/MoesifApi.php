@@ -78,7 +78,7 @@ class MoesifApi extends BaseClass {
      */
     public function updateUser($userData) {
       if (is_null($userData)) {
-        throw new Exception('Moesif UpdateUser with a null userData object');
+        throw new Exception('Moesif UpdateUser requires non-null userData object');
       }
 
       if (!isset($userData['user_id'])) {
@@ -98,7 +98,7 @@ class MoesifApi extends BaseClass {
 
         foreach($usersBatchData as $userData) {
             if (is_null($userData)) {
-                throw new Exception('Moesif UpdateUser with a null userData object');
+                throw new Exception('Moesif UpdateUser requires non-null userData object');
               }
         
               if (!isset($userData['user_id'])) {
@@ -117,7 +117,7 @@ class MoesifApi extends BaseClass {
      */
     public function updateCompany($companyData) {
       if (is_null($companyData)) {
-        throw new Exception('Moesif UpdateCompany with a null companyData object');
+        throw new Exception('Moesif UpdateCompany requires non-null companyData object');
       }
 
       if (!isset($companyData['company_id'])) {
@@ -137,7 +137,7 @@ class MoesifApi extends BaseClass {
 
         foreach($companiesBatchData as $companyData) {
             if (is_null($companyData)) {
-                throw new Exception('Moesif UpdateCompany with a null companyData object');
+                throw new Exception('Moesif UpdateCompany requires non-null companyData object');
               }
         
               if (!isset($companyData['company_id'])) {

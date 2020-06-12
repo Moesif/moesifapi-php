@@ -30,7 +30,7 @@ class SendTaskProducer extends BaseClass {
      * If the queue reaches this size we'll auto-flush to prevent out of memory errors
      * @var int
      */
-    protected $_max_queue_size = 5;
+    protected $_max_queue_size;
     /**
      * Creates a new Send Task Producer, assings Moesif project applicadation Id.
      * @param $token
