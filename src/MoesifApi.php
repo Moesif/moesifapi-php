@@ -1,0 +1,167 @@
+<?php
+namespace Moesif\Sender;
+
+use Exception;
+
+class MoesifApi extends BaseClass {
+
+    public $_sendProducer;
+
+    private static $_instance;
+
+    /**
+     * Instantiates a new MoesifApi instance.
+     * @param $applicationId
+     * @param array $options
+     */
+    public function __construct($applicationId, $options = array()) {
+        parent::__construct($options);
+        $this->_sendProducer = new SendTaskProducer($applicationId, $options);
+    }
+    /**
+     * Returns a singleton instance of MoesifApi
+     * @param $applicationId
+     * @param array $options
+     * @return MoesifApi
+     */
+    public static function getInstance($applicationId, $options = array()) {
+        if(!isset(self::$_instance)) {
+            self::$_instance = new MoesifApi($applicationId, $options);
+        }
+        return self::$_instance;
+    }
+    /**
+     * Add an array representing a message to be sent to Moesif to the in-memory queue.
+     * @param array $message
+     */
+    public function enqueue($message = array()) {
+        $this->_sendProducer->enqueue($message);
+    }
+    /**
+     * Add an array representing a list of messages to be sent to Moesif to a queue.
+     * @param array $messages
+     */
+    public function enqueueAll($messages = array()) {
+        $this->_sendProducer->enqueueAll($messages);
+    }
+    /**
+     * Flush the events queue
+     * @param int $desired_batch_size
+     */
+    public function flush($desired_batch_size = 10) {
+        $this->_sendProducer->flush($desired_batch_size);
+    }
+
+    /**
+     * Get App Config.
+     */
+    public function getAppConfig() {
+      return $this->_sendProducer->getAppConfig();
+    }
+
+    /**
+     * Create Event.
+     * @param eventData
+     * @throws Exception
+     */
+    public function createEvent($eventData) {
+      if (is_null($eventData)) {
+        throw new Exception('Moesif createEvent with a null eventData object');
+      }
+      return $this->_sendProducer->createEvent($eventData);
+    }
+
+    /**
+     * Updates Users.
+     * @param userData
+     * @throws Exception
+     */
+    public function updateUser($userData) {
+      if (is_null($userData)) {
+        throw new Exception('Moesif UpdateUser requires non-null userData object');
+      }
+
+      if (!isset($userData['user_id'])) {
+        throw new Exception('Moesif updateUser requires user_id field to be set');
+      }
+
+      $this->_sendProducer->updateUser($userData);
+    }
+
+    /**
+     * Updates Users in batch.
+     * @param array of userData
+     * @throws Exception
+     */
+    public function updateUsersBatch($usersBatchData = array()) {
+        $users = array();
+
+        foreach($usersBatchData as $userData) {
+            if (is_null($userData)) {
+                throw new Exception('Moesif UpdateUser requires non-null userData object');
+              }
+        
+              if (!isset($userData['user_id'])) {
+                throw new Exception('Moesif updateUser requires user_id field to be set');
+              }
+              $users[] = $userData;
+        }
+  
+        $this->_sendProducer->updateUsersBatch($users);
+      }
+
+    /**
+     * Updates Company.
+     * @param companyData
+     * @throws Exception
+     */
+    public function updateCompany($companyData) {
+      if (is_null($companyData)) {
+        throw new Exception('Moesif UpdateCompany requires non-null companyData object');
+      }
+
+      if (!isset($companyData['company_id'])) {
+        throw new Exception('Moesif updateCompany requires company_id field to be set');
+      }
+
+      $this->_sendProducer->updateCompany($companyData);
+    }
+
+    /**
+     * Updates Companies in batch.
+     * @param array of companiesData
+     * @throws Exception
+     */
+    public function updateCompaniesBatch($companiesBatchData = array()) {
+        $companies = array();
+
+        foreach($companiesBatchData as $companyData) {
+            if (is_null($companyData)) {
+                throw new Exception('Moesif UpdateCompany requires non-null companyData object');
+              }
+        
+              if (!isset($companyData['company_id'])) {
+                throw new Exception('Moesif updateCompany requires company_id field to be set');
+              }
+              $companies[] = $companyData;
+        }
+  
+        $this->_sendProducer->updateCompaniesBatch($companies);
+      }
+
+    /**
+     * Empty the events queue
+     */
+    public function reset() {
+        $this->_sendProducer->reset();
+    }
+
+    /**
+     * Track an event defined by $event associated with metadata defined by $properties
+     * @param string $event
+     * @param array $properties
+     */
+    public function track($event) {
+        return $this->_sendProducer->track($event);
+    }
+}
