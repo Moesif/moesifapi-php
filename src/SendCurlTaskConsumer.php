@@ -20,6 +20,31 @@ class SendCurlTaskConsumer extends SendTaskConsumer {
     protected $_users_endpoint;
 
     /**
+     * @var string the host-relative endpoint for app config
+     */
+    protected $_app_config_endpoint;
+
+    /**
+     * @var string the host-relative endpoint for event
+     */
+    protected $_event_endpoint;
+
+    /**
+     * @var string the host-relative endpoint for users batch
+     */
+    protected $_users_batch_endpoint;
+
+    /**
+     * @var string the host-relative endpoint for company
+     */
+    protected $_company_endpoint;
+
+    /**
+     * @var string the host-relative endpoint for companies batch
+     */
+    protected $_companies_batch_endpoint;
+
+    /**
      * @var int connect_timeout The number of seconds to wait while trying to connect. Default is 5 seconds.
      */
     protected $_connect_timeout;
