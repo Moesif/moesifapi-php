@@ -8,14 +8,16 @@ class SendCurlTaskConsumer extends SendTaskConsumer {
     /**
      * @var string the host to connect to (e.g. api.moesif.net)
      */
+    
     protected $_host;
     /**
-     * @var string the host-relative endpoint to write to (e.g. /engage)
+     * @var string the host-relative endpoint to write to (e.g. /events/batch)
      */
+    
     protected $_endpoint;
 
     /**
-     * @var string the host-relative endpoint to write to (e.g. /engage)
+     * @var string the host-relative endpoint to write to (e.g. /users)
      */
     protected $_users_endpoint;
 
@@ -48,17 +50,21 @@ class SendCurlTaskConsumer extends SendTaskConsumer {
      * @var int connect_timeout The number of seconds to wait while trying to connect. Default is 5 seconds.
      */
     protected $_connect_timeout;
+    
     /**
      * @var int timeout The maximum number of seconds to allow cURL call to execute. Default is 30 seconds.
      */
     protected $_timeout;
+    
     /**
      * @var string the protocol to use for the cURL connection
      */
     protected $_protocol;
+    
     /**
      * @var bool|null true to fork the cURL process (using exec) or false to use PHP's cURL extension. false by default
      */
+    
     protected $_fork = null;
     /**
      * Creates a new CurlConsumer and assigns properties from the $options array
